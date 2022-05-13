@@ -30,19 +30,7 @@ const createNewFunfact = async (req, res) => {
 
 //Delete Funfact
 const deleteFunfact = async (req, res) => {
-  if (!req?.body.id) {
-    return res.status(400).json({ message: "Employee Id is required. " });
-  }
-
-  const employee = await Employee.findOne({ _id: req.body.id }).exec();
-
-  if (!employee) {
-    return res
-      .status(204)
-      .json({ message: `No Funfact matches Id ${req.body.id}` });
-  }
-  const result = await employee.deleteOne({ _id: req.body.id });
-  res.json(result);
+ 
 };
 
 //Get State
@@ -63,15 +51,15 @@ const getState = async (req, res) => {
 
 const getCapital = async (req, res) => {
   const state = await data.states.filter((sta) => sta.code === req.params.code.toUpperCase());
-  const capital = await state.find(); 
-  console.log(state);
+  const capital = await state.capital_city; 
+  console.log(state.capital_city);
   res.json(capital);
 
 }
 
 const getNickname = async (req, res) => {
   const state = await data.states.filter((sta) => sta.code === req.params.code.toUpperCase());
-  const nickname = state.find(capital_city);
+  const nickname = state.nickname;
   console.log(nickname);
   res.json(nickname);
 
@@ -79,7 +67,7 @@ const getNickname = async (req, res) => {
 
 const getPopulation = async (req, res) => {
   const state = await data.states.filter((sta) => sta.code === req.params.code.toUpperCase());
-  const population = state.find(capital_city);
+  const population = state.population;
   console.log(population);
   res.json(population);
 
@@ -87,7 +75,7 @@ const getPopulation = async (req, res) => {
 
 const getAdmission = async (req, res) => {
   const state = await data.states.filter((sta) => sta.code === req.params.code.toUpperCase());
-  const admission = state.find(capital_city);
+  const admission = state.admission;
   console.log(admission);
   res.json(admission);
 
