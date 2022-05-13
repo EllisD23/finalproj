@@ -6,7 +6,6 @@ router
   .route("/")
   .get(stateController.getStates)
   .post(stateController.createNewFunfact)
-  //.put(stateController.updateEmployee)
   .delete(stateController.deleteFunfact);
 
 router.route("/:code").get(stateController.getState);
